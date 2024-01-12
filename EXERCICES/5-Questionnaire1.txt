@@ -1,0 +1,268 @@
+--VARIABLES--
+
+1-Quelle est la syntaxe pour créer une variable en Python ?
+
+    a- Variable x = 5
+    b- x = 5
+    c- new x = 5
+    d- set x = 5
+
+2-Quelle est la différence entre = et == en Python ?
+
+    a- Ils sont interchangeables.
+    b- = est utilisé pour l'égalité, == pour l'assignation.
+    c- == est utilisé pour l'égalité, = pour l'assignation.
+    d- = et == sont utilisés pour l'égalité.
+
+3-Comment concaténez-vous deux listes liste1 et liste2 ?
+
+    a- liste1 + liste2
+    b- liste1 - liste2
+    c- liste1 * liste2
+    d- concat(liste1, liste2)
+
+4-Quelle est la méthode pour inverser l'ordre des éléments d'une liste ?
+
+    a- reverse()
+    b- flip()
+    c- invert()
+    d- revert()
+
+5- Comment convertissez-vous une variable de type chaîne de caractères en entier (int) en Python ?
+
+    a- convertir(int, ma_variable)
+    b- int(ma_variable)
+    c- ma_variable.to_int()
+    d- to_integer(ma_variable)
+
+--LISTES--
+
+1-Quelle est la syntaxe pour créer une liste vide en Python ?
+
+    a- empty_list = {}
+    b- empty_list = []
+    c- empty_list = list()
+    d- empty_list = [None]
+
+2-Comment accédez-vous au troisième élément d'une liste appelée ma_liste ?
+
+    a- ma_liste[2]
+    b- ma_liste[3]
+    c- ma_liste[1]
+    d- ma_liste[0]
+
+3-Quelle est la méthode pour ajouter un élément à la fin d'une liste ?
+
+    a- add()
+    b- append()
+    c- insert()
+    d- extend()
+
+4- Quelle fonction permet de connaître la longueur d'une liste ?
+
+    a- len()
+    b- length()
+    c- count()
+    d- size()
+
+5-Comment supprimez-vous le dernier élément d'une liste ?
+
+    a- remove()
+    b- delete()
+    c- pop()
+    d- discard()
+
+--DICTIONNAIRES--
+
+1- Comment créez-vous un dictionnaire vide en Python ?
+
+    a- dictionnaire{}
+    b- dictionnaire()
+    c- dictionnaire = {}
+    d- dictionnaire = dict()
+
+2- Quelle est la syntaxe pour accéder à la valeur associée à la clé "cle1" dans un dictionnaire nommé mon_dict ?
+
+    a- mon_dict.get("cle1")
+    b- mon_dict.value("cle1")
+    c- mon_dict["cle1"]
+    d- mon_dict.access("cle1")
+
+3- Comment ajoutez-vous une nouvelle paire clé-valeur avec la clé "cle2" et la valeur 42 dans un dictionnaire existant mon_dict ?
+
+    a- mon_dict.add("cle2", 42)
+    b- mon_dict.insert("cle2", 42)
+    c- mon_dict["cle2"] = 42
+    d- mon_dict.append("cle2", 42)
+
+4- Quelle méthode supprime une paire clé-valeur spécifique dans un dictionnaire ?
+
+    a- delete()
+    b- remove()
+    c- pop()
+    d- discard()
+
+5- Comment vérifiez-vous si une clé "cle3" existe dans un dictionnaire nommé dico ?
+
+    a- "cle3" in dico
+    b- dico.exists("cle3")
+    c- dico.check("cle3")
+    d- dico.contains("cle3")
+
+--JSON--
+
+1- Comment convertissez-vous un objet Python en chaîne JSON ?
+
+    a- json.stringify(objet)
+    b- json.dumps(objet)
+    c- json.encode(objet)
+    d- json.to_json(objet)
+
+2- Quelle méthode utilisez-vous pour charger un fichier JSON dans Python ?
+
+    a- load_file("fichier.json")
+    b- json.load("fichier.json")
+    c- json.loads("fichier.json")
+    d- read_json("fichier.json")
+
+3- Comment accédez-vous à la valeur associée à la clé "cle1" dans une chaîne JSON nommée json_data ?
+
+    a- json_data.value("cle1")
+    b- json_data.get("cle1")
+    c- json_data["cle1"]
+    d- json_data.access("cle1")
+
+4- Quelle méthode utilisez-vous pour enregistrer un dictionnaire Python dans un fichier JSON ?
+
+    a- save_json("fichier.json", mon_dict)
+    b- json.save("fichier.json", mon_dict)
+    c- json.dump(mon_dict, "fichier.json")
+    d- write_json("fichier.json", mon_dict)
+
+5- Comment vérifiez-vous si une clé "cle2" existe dans un objet JSON nommé json_obj ?
+
+    a- "cle2" in json_obj
+    b- json_obj.exists("cle2")
+    c- json_obj.check("cle2")
+    d- json_obj.contains("cle2")
+
+--CLASSES--
+1- Comment définissez-vous une classe en Python ?
+
+    a- class MyClass:
+    b- define MyClass:
+    c- new Class MyClass()
+    d- create class MyClass
+
+2- Comment créez-vous une instance d'une classe en Python ?
+
+    a- my_instance = MyClass.new()
+    b- my_instance = create_instance(MyClass)
+    c- my_instance = new MyClass()
+    d- my_instance = MyClass()
+
+3- Quelle est la méthode spéciale appelée lorsqu'une instance d'une classe est créée en Python ?
+
+    a- __init__
+    b- __create__
+    c- __new__
+    d- __start__
+
+4- Comment accédez-vous à un attribut d'instance dans une classe ?
+
+    a- self.attribute
+    b- instance.attribute
+    c- attribute
+    d- MyClass.attribute
+
+5- Quelle méthode spéciale est appelée lorsqu'un objet est converti en une représentation de chaîne ?
+
+    a- __str__
+    b- __repr__
+    c- __format__
+    d- __display__
+
+--OBJETS--
+
+
+D'accord, voici un questionnaire avec 5 questions sur les objets en Python, sans parler explicitement de classe :
+
+Comment créez-vous un objet vide en Python sans utiliser de classe ?
+    a. object()
+    b. {}
+    c. new Object()
+    d. create_object()
+
+Quelle méthode spéciale est utilisée pour ajouter un attribut à un objet en Python ?
+    a. __add__
+    b. __setattr__
+    c. __setattribute__
+    d. add_attribute
+
+Comment supprimez-vous un attribut d'un objet en Python ?
+    a. remove_attribute()
+    b. del object.attribute
+    c. object.attribute = None
+    d. object.delete(attribute)
+
+Quelle fonction est utilisée pour vérifier si un objet a un attribut particulier ?
+    a. hasattr()
+    b. check_attribute()
+    c. attribute_exists()
+    d. object.has_attribute()
+
+Comment accédez-vous à la liste des attributs d'un objet en Python ?
+    a. list(object.attributes)
+    b. object.list_attributes()
+    c. object.__attributes__
+    d. dir(object)
+
+--REPONSES--
+
+--VARIABLES--
+
+b- x = 5
+c- == est utilisé pour l'égalité, = pour l'assignation.
+a- liste1 + liste2
+a- reverse()
+b- int(ma_variable)
+
+--LISTES--
+
+b- empty_list = []
+a- ma_liste[2]
+b- append()
+a- len()
+c- pop()
+
+--DICTIONNAIRES--
+
+c- dictionnaire = {}
+c- mon_dict["cle1"]
+c- mon_dict["cle2"] = 42
+c- pop()
+a- "cle3" in dico
+
+--JSON--
+
+b- json.dumps(objet)
+b- json.load("fichier.json")
+c- json_data["cle1"]
+b- json.save("fichier.json", mon_dict)
+a- "cle2" in json_obj
+
+--CLASSES--
+
+a- class MyClass:
+d- my_instance = MyClass()
+a- init
+a- self.attribute
+a- str
+
+--OBJETS--
+
+b. {}
+b. setattr
+b. del object.attribute
+a. hasattr()
+d. dir(object)
