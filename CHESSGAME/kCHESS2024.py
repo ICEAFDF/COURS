@@ -1,16 +1,14 @@
 # -*- coding : utf8 -*-
-"""Jeu D'Echecs"""
+"""Jeu d'Echecs v0.5"""
 
-# import keyboard
-# import sys
-import os,time,subprocess
+# import os,sys,keyboard,time,subprocess
+import os
 from datetime import datetime
 
 # from kCHESS2024_classes import ECHIQUIER, Coup, Pion, Tour, Cavalier, Fou, Reine, Roi
 from kCHESS2024_classes import *
 
 # Initial setup
-
 ECHIQUIER = ECHIQUIER()
 partie_en_cours = ECHIQUIER.partie_en_cours
 cases = ECHIQUIER.cases
@@ -20,19 +18,18 @@ echiquier_unicode = ECHIQUIER.echiquier_unicode
 pieces_mapping = ECHIQUIER.pieces_mapping
 
 # paths
-# Obtenez le chemin absolu du fichier Python en cours d'exécution
+# chemin absolu du fichier Python en cours d'exécution
 chemin_script = os.path.abspath(__file__)
 
-# Obtenez le répertoire parent du fichier en cours d'exécution
+# répertoire parent du fichier en cours d'exécution
 repertoire_parent = os.path.dirname(chemin_script)
 
-# Créez le chemin complet pour le dossier "parties"
+# chemin complet pour le dossier "parties"
 chemin_parties = os.path.join(repertoire_parent, 'parties')
-
 
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
-    # Ajoutez une pause pour permettre à la console de se rafraîchir
+    # une pause pour permettre à la console de se rafraîchir
     # time.sleep(0.5)  
 
 # def clear_console():
@@ -47,6 +44,10 @@ def demander_sauvegarde():
             return reponse
 
 def sauvegarder_partie_pgn(partie_en_cours, nom_fichier):
+    # chemin complet du dossier "parties"
+    if not os.path.exists(chemin_parties):
+        os.makedirs(chemin_parties)
+
     with open(nom_fichier, 'w') as fichier:
         pgn = format_partie_en_cours_pgn(partie_en_cours)
         fichier.write(pgn)
@@ -81,9 +82,18 @@ def format_partie_en_cours_pgn(partie_en_cours):
     return ' '.join(moves_pgn)
 
 def choisir_couleurs():
-    couleur_joueur_blanc = input("Choisissez la couleur pour les blancs (B ou N): ").upper()
-    couleur_joueur_noir = 'B' if couleur_joueur_blanc == 'N' else 'N'
-    return couleur_joueur_blanc, couleur_joueur_noir
+    while True:
+        couleur_joueur_blanc = input("Couleur (B ou N), 'q' pour quitter : ").upper()
+        
+        if couleur_joueur_blanc == 'Q':
+            print("Au revoir !")
+            exit()  # Quitter le programme si 'q' est entré
+        
+        if couleur_joueur_blanc in ['B', 'N']:
+            couleur_joueur_noir = 'B' if couleur_joueur_blanc == 'N' else 'N'
+            return couleur_joueur_blanc, couleur_joueur_noir
+        else:
+            print("Veuillez saisir une couleur valide (B ou N).")
 
 def validation_input(input_str, partie_en_cours, couleur_attendue):
     # Check présence du séparateur '-'
@@ -109,7 +119,7 @@ def validation_input(input_str, partie_en_cours, couleur_attendue):
 
     valeur_start = valeur_piece(start)
 
-    # On Crée une instance de la classe Pion
+    # On crée une instance de la classe Pion
     pion_instance = Pion(couleur_attendue)
 
     # Vérifie si le déplacement est autorisé pour le pion.
@@ -122,7 +132,7 @@ def validation_input(input_str, partie_en_cours, couleur_attendue):
     # Met à jour l'échiquier avec le nouveau coup
     ECHIQUIER.make_move(start, end)
 
-    # Imprime l'échiquier mis à jour
+    # échiquier mis à jour
     ECHIQUIER.print_echiquier_unicode()
 
     # print('')
@@ -132,7 +142,6 @@ def validation_input(input_str, partie_en_cours, couleur_attendue):
     # print(format_partie_en_cours_pgn(partie_en_cours))
     # # print([str(coup) for coup in partie_en_cours])
     
-
     return None
 
 def nouvelle_partie():
@@ -173,9 +182,9 @@ def nouvelle_partie():
                     date_actuelle = datetime.now().strftime("%Y%m%d_%H%M%S")
                     nom_fichier = input("Entrez le nom du fichier pour sauvegarder la partie (sans extension) : ")
                     nom_complet_fichier_pgn = f"{nom_fichier}-{date_actuelle}.pgn"
-                    # Obtenez le chemin complet du fichier PGN
+                    # Chemin complet du fichier PGN
                     chemin_fichier_pgn = os.path.join(chemin_parties, nom_complet_fichier_pgn)
-                    # Sauvegarder la partie PGN
+                    # Sauvegarde de la partie PGN
                     sauvegarder_partie_pgn(partie_en_cours, chemin_fichier_pgn)
             print("Au revoir !")
             break  # Quitter la boucle si l'utilisateur entre 'q'
@@ -183,18 +192,10 @@ def nouvelle_partie():
         validation_result = validation_input(input_sequence, partie_en_cours, couleur_attendue)
 
         if validation_result is not None:
-            continue  # Continuez avec la prochaine itération de la boucle
+            continue  # Continuer avec la prochaine itération de la boucle
 
     # Message de sortie après la boucle principale
     print("Partie terminée. Merci d'avoir joué !")
 
-
-
 # Démarrez une nouvelle partie
 nouvelle_partie()
-
-
-# Afficher les coups enregistrés
-# print("\nCoups joués dans la partie en cours:")
-# for coup in partie_en_cours:
-#     print(coup)
