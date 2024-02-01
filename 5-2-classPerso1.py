@@ -1,7 +1,8 @@
 class Guerrier:
     def __init__(self, *args):
         if len(args) == 1 and (isinstance(args[0], tuple) or isinstance(args[0], list)):
-            # Si un seul argument est passé et que c'est un tuple ou une liste, utilisez ses éléments
+            # Si un seul argument est passé et que c'est un tuple ou une liste, 
+            # utilisez ses éléments
             type, nom, points_de_vie, attaque, defense, prix = args[0]
         elif len(args) == 6:
             # S'il y a exactement six arguments, prenez-les tels quels

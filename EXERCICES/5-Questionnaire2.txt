@@ -1,0 +1,92 @@
+--DICTIONNAIRES--
+
+1- Comment créez-vous un dictionnaire vide en Python ?
+
+    a- dictionnaire{}
+    b- dictionnaire()
+    c- dictionnaire = {}
+    d- dictionnaire = dict()
+
+2- Quelle est la syntaxe pour accéder à la valeur associée à la clé "cle1" dans un dictionnaire nommé mon_dict ?
+
+    a- mon_dict.get("cle1")
+    b- mon_dict.value("cle1")
+    c- mon_dict["cle1"]
+    d- mon_dict.access("cle1")
+
+3- Comment ajoutez-vous une nouvelle paire clé-valeur avec la clé "cle2" et la valeur 42 dans un dictionnaire existant mon_dict ?
+
+    a- mon_dict.add("cle2", 42)
+    b- mon_dict.insert("cle2", 42)
+    c- mon_dict["cle2"] = 42
+    d- mon_dict.append("cle2", 42)
+
+4- Quelle méthode supprime une paire clé-valeur spécifique dans un dictionnaire ?
+
+    a- delete()
+    b- remove()
+    c- pop()
+    d- discard()
+
+5- Comment vérifiez-vous si une clé "cle3" existe dans un dictionnaire nommé dico ?
+
+    a- "cle3" in dico
+    b- dico.exists("cle3")
+    c- dico.check("cle3")
+    d- dico.contains("cle3")
+
+--JSON--
+
+1- Comment convertissez-vous un objet Python en chaîne JSON ?
+
+    a- json.stringify(objet)
+    b- json.dumps(objet)
+    c- json.encode(objet)
+    d- json.to_json(objet)
+
+2- Quelle méthode utilisez-vous pour charger un fichier JSON dans Python ?
+
+    a- load_file("fichier.json")
+    b- json.load("fichier.json")
+    c- json.loads("fichier.json")
+    d- read_json("fichier.json")
+
+3- Comment accédez-vous à la valeur associée à la clé "cle1" dans une chaîne JSON nommée json_data ?
+
+    a- json_data.value("cle1")
+    b- json_data.get("cle1")
+    c- json_data["cle1"]
+    d- json_data.access("cle1")
+
+4- Quelle méthode utilisez-vous pour enregistrer un dictionnaire Python dans un fichier JSON ?
+
+    a- save_json("fichier.json", mon_dict)
+    b- json.save("fichier.json", mon_dict)
+    c- json.dump(mon_dict, "fichier.json")
+    d- write_json("fichier.json", mon_dict)
+
+5- Comment vérifiez-vous si une clé "cle2" existe dans un objet JSON nommé json_obj ?
+
+    a- "cle2" in json_obj
+    b- json_obj.exists("cle2")
+    c- json_obj.check("cle2")
+    d- json_obj.contains("cle2")
+
+
+--REPONSES--
+
+--DICTIONNAIRES--
+
+c- dictionnaire = {}
+c- mon_dict["cle1"]
+c- mon_dict["cle2"] = 42
+c- pop()
+a- "cle3" in dico
+
+--JSON--
+
+b- json.dumps(objet)
+b- json.load("fichier.json")
+c- json_data["cle1"]
+b- json.save("fichier.json", mon_dict)
+a- "cle2" in json_obj

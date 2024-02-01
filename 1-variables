@@ -1,0 +1,47 @@
+# Exemple de variables en Python
+
+# Variable et assignation de valeur
+x = 5
+name = "John"
+
+# Affichage des variables
+print("Valeur de x:", x)
+print("Nom:", name)
+
+# Nom de variables
+age = 25
+_variable = "exemple"
+
+# Affichage de variables avec noms spéciaux
+print("Âge:", age)
+print("Variable avec underscore:", _variable)
+
+# Types de données
+num = 10        # entier
+pi = 3.14       # nombre à virgule flottante
+nom = "Alice"   # chaîne de caractères
+is_etudiant = True  # booléen
+
+# Affichage des types de données
+print("Nombre entier:", num)
+print("Nombre à virgule flottante:", pi)
+print("Nom:", nom)
+print("Est étudiant:", is_etudiant)
+
+# Typage dynamique
+y = 10      # y est un entier
+y = "hello" # maintenant y est une chaîne de caractères
+print("Valeur de y:", y)
+
+# Conversion de types
+num_str = "123"
+num = int(num_str)
+print("Conversion de chaîne en entier:", num)
+
+# Assignations multiples
+a, b, c = 1, 2, 3
+print("Valeurs de a, b, c:", a, b, c)
+
+# Constantes (convention)
+PI = 3.14
+print("Valeur de PI:", PI)

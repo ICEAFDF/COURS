@@ -7,12 +7,17 @@ class HelloWorldApp:
 
         self.label = tk.Label(master, text="Hello, World!")
         self.label.pack()
+        self.label = tk.Label(master, text="Hello, World2!")
+        self.label.pack()
 
         self.quit_button = tk.Button(master, text="Quitter", command=master.destroy)
         self.quit_button.pack()
 
 # Créer une instance de la classe Tk de Tkinter (fenêtre principale)
 root = tk.Tk()
+
+# Définir la taille fixe de la fenêtre (largeur x hauteur + position x + position y)
+root.geometry("300x200")
 
 # Créer une instance de votre application
 app = HelloWorldApp(root)
