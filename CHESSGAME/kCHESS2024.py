@@ -145,57 +145,69 @@ def validation_input(input_str, partie_en_cours, couleur_attendue):
     return None
 
 def nouvelle_partie():
-    # Appel de la fonction pour choisir les couleurs
     couleur_joueur_blanc, couleur_joueur_noir = choisir_couleurs()
 
+    # Initialisation de joueur_courant au lieu de couleur_attendue
+    joueur_courant = couleur_joueur_blanc
+
     while True:
-        # Effacer la console à chaque tour de boucle
         clear_console()
-        
         partie_en_cours = ECHIQUIER.partie_en_cours
 
         print("")
-        ECHIQUIER.print_echiquier_unicode()
-        print("")
+        if couleur_joueur_blanc == 'B':
+            ECHIQUIER.print_echiquier_unicode()
+        else:
+            ECHIQUIER.print_echiquier_unicode_noirs()
 
-        # Afficher le PGN si des coups ont été joués
         if partie_en_cours:
+            print('')
             print(format_partie_en_cours_pgn(partie_en_cours))
             print("")
 
-        couleur_attendue = couleur_joueur_blanc if len(partie_en_cours) % 2 == 0 else couleur_joueur_noir
-
-        # Afficher le message d'erreur s'il y en a un
         if 'validation_result' in locals() and validation_result:
             print(f"Coup invalide : {validation_result}")
-            del validation_result  # Supprimer la variable après l'avoir affichée
+            del validation_result
         else:
-            print('')  # Imprimer une ligne vide si validation_result est None ou vide
+            print('')
 
-        input_sequence = input(f"Entrez le coup pour les {couleur_attendue} (ex. a2-a4). 'q' pour quitter : ")
+        if joueur_courant == couleur_joueur_blanc:
+            couleur_attendue = couleur_joueur_blanc
+        else:
+            couleur_attendue = couleur_joueur_noir
 
-        if input_sequence.lower() in ['q']:
+        input_sequence = input(f"Entrez coup pour les {couleur_attendue} (ex. a2-a4). 'q' sauvegarder/quitter, 'qq' quitter : ")
+
+        if input_sequence.lower() == 'qq':
+            print("Au revoir !")
+            break
+                
+        if input_sequence.lower() == 'q':
             if partie_en_cours:
                 sauvegarde_demandee = demander_sauvegarde()
                 if sauvegarde_demandee == 'o':
-                    # Générer le nom du fichier avec la date actuelle
                     date_actuelle = datetime.now().strftime("%Y%m%d_%H%M%S")
                     nom_fichier = input("Entrez le nom du fichier pour sauvegarder la partie (sans extension) : ")
                     nom_complet_fichier_pgn = f"{nom_fichier}-{date_actuelle}.pgn"
-                    # Chemin complet du fichier PGN
                     chemin_fichier_pgn = os.path.join(chemin_parties, nom_complet_fichier_pgn)
-                    # Sauvegarde de la partie PGN
                     sauvegarder_partie_pgn(partie_en_cours, chemin_fichier_pgn)
             print("Au revoir !")
-            break  # Quitter la boucle si l'utilisateur entre 'q'
+            break
 
         validation_result = validation_input(input_sequence, partie_en_cours, couleur_attendue)
 
+        if joueur_courant == couleur_joueur_blanc:
+            joueur_courant = couleur_joueur_noir
+        else:
+            joueur_courant = couleur_joueur_blanc
+
         if validation_result is not None:
-            continue  # Continuer avec la prochaine itération de la boucle
+            continue
 
     # Message de sortie après la boucle principale
     print("Partie terminée. Merci d'avoir joué !")
+
+
 
 # Démarrez une nouvelle partie
 nouvelle_partie()
