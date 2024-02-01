@@ -1,2 +1,3 @@
-# COURS ça marche nickel
-test 1 2 3
+# COURS L1 SDN python
+
+readme wip
