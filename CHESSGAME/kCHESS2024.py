@@ -113,9 +113,9 @@ def validation_input(input_str, partie_en_cours, couleur_attendue):
 
     # Vérifie la parité du coup.
     if len(partie_en_cours) % 2 == 1 and couleur_piece(start) != couleur_attendue:
-        return "Les pièces noires doivent jouer ce coup."
+        return f"Les pièces {couleur_piece(start)} doivent jouer ce coup."
     elif len(partie_en_cours) % 2 == 0 and couleur_piece(start) != couleur_attendue:
-        return "Les pièces blanches doivent jouer ce coup."
+        return f"Les pièces {couleur_piece(start)} doivent jouer ce coup."
 
     valeur_start = valeur_piece(start)
 
@@ -135,14 +135,8 @@ def validation_input(input_str, partie_en_cours, couleur_attendue):
     # échiquier mis à jour
     ECHIQUIER.print_echiquier_unicode()
 
-    # print('')
-    # print('-----------------------')
-    # print('')
-    # # print(format_partie_en_cours(partie_en_cours))
-    # print(format_partie_en_cours_pgn(partie_en_cours))
-    # # print([str(coup) for coup in partie_en_cours])
-    
     return None
+
 
 def nouvelle_partie():
     couleur_joueur_blanc, couleur_joueur_noir = choisir_couleurs()

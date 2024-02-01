@@ -176,24 +176,18 @@ class ECHIQUIER:
             print()
 
 
-    def print_echiquier_unicode_noirs(self):
+    def print_echiquier_unicode_noirs(self, couleur='N'):
+        if couleur == 'N':
+            echiquier_unicode = self.echiquier_unicode_noirs
+        else:
+            echiquier_unicode = self.echiquier_unicode_actuel  # Utilisez l'échiquier Unicode actuel
+
         for ligne in range(8):
             for colonne in range(8):
-                piece = self.echiquier[ligne][colonne]
-                if (ligne, colonne) in self.cases:
-                    if piece != ' ':
-                        if piece.couleur == 'B':
-                            print(f' {piece.symbole_blanc()} ', end='')
-                        elif piece.couleur == 'N':
-                            print(f' {piece.symbole_noir()} ', end='')
-                    else:
-                        if (ligne, colonne) in self.coups_joues:
-                            print(' . ', end='')  # Affiche un point pour indiquer que la case a été jouée
-                        else:
-                            print('   ', end='')
-                else:
-                    print('   ', end='')
-            print('')
+                piece_unicode = echiquier_unicode[ligne][colonne]
+                print(f"{piece_unicode}", end='  ')
+            print()
+
 
 
 
@@ -273,6 +267,7 @@ class Pion(Pieces):
         # Si aucune des conditions ci-dessus n'est remplie, le déplacement n'est pas autorisé
         return False
 
+
 class Tour(Pieces):
     def __init__(self, couleur):
         super().__init__(couleur)
@@ -304,9 +299,14 @@ class Coup:
     def creer_instance_piece(self, piece_str):
         # Utilisez votre mapping pour créer une instance de la classe de pièce appropriée
         piece_key = piece_str.upper()
+        couleur_piece = self.couleur
+
+        if couleur_piece == 'N':
+            piece_key = piece_key.lower()
+
         if piece_key in self.echiquier.pieces_mapping:
             classe_piece = self.echiquier.pieces_mapping[piece_key]
-            return classe_piece(couleur=self.couleur)
+            return classe_piece(couleur=couleur_piece)
         else:
             print(f"Type de pièce inconnu : {piece_str}")
             raise ValueError(f"Type de pièce inconnu : {piece_str}")
