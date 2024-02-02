@@ -95,47 +95,53 @@ def choisir_couleurs():
         else:
             print("Veuillez saisir une couleur valide (B ou N).")
 
-def validation_input(input_str, partie_en_cours, couleur_attendue):
-    # Check présence du séparateur '-'
-    if '-' not in input_str:
-        return "La séquence doit contenir le caractère '-' pour spécifier le mouvement."
+def est_case_valide(coordonnee):
+    """
+    Vérifie si la coordonnée est valide (par exemple, 'a1', 'h8').
+    """
+    if len(coordonnee) != 2:
+        return False
 
-    # Séparation des cases
-    start, end = input_str.split('-')
+    colonne, ligne = coordonnee[0], coordonnee[1]
 
-    # Vérification que les deux cases sont dans la liste
-    if start not in cases and end not in cases:
-        return "Les deux cases ne sont pas dans la liste."
-    elif start not in cases:
-        return f"La case {start} n'est pas dans la liste."
-    elif end not in cases:
-        return f"La case {end} n'est pas dans la liste."
+    if not ('a' <= colonne <= 'h' and '1' <= ligne <= '8'):
+        return False
 
-    # Vérifie la parité du coup.
-    if len(partie_en_cours) % 2 == 1 and couleur_piece(start) != couleur_attendue:
-        return f"Les pièces {couleur_piece(start)} doivent jouer ce coup."
-    elif len(partie_en_cours) % 2 == 0 and couleur_piece(start) != couleur_attendue:
-        return f"Les pièces {couleur_piece(start)} doivent jouer ce coup."
+    return True
 
-    valeur_start = valeur_piece(start)
 
-    # On crée une instance de la classe Pion
-    pion_instance = Pion(couleur_attendue)
+def validation_input(input_sequence, partie_en_cours, couleur_attendue):
+    # Séparer les coordonnées de départ et d'arrivée
+    start, end = input_sequence.split('-')
 
-    # Vérifie si le déplacement est autorisé pour le pion.
-    if not pion_instance.check_bouger_piece(start, end):
-        return "Déplacement de pion non autorisé."
+    # Vérifier si les coordonnées sont valides
+    if not (est_case_valide(start) and est_case_valide(end)):
+        print("Coordonnées invalides. Veuillez entrer un coup au format 'a2-a4'.")
+        return False
 
-    coup_joue = Coup(start, end, valeur_start, couleur_attendue, ECHIQUIER)
-    partie_en_cours.append(coup_joue)
+    # Vérifier si la case de départ contient une pièce de la bonne couleur
+    piece_present = partie_en_cours.get_piece(start)
+    if piece_present is None or piece_present.couleur != couleur_attendue:
+        print("Case de départ invalide. Veuillez sélectionner une pièce de votre couleur.")
+        return False
 
-    # Met à jour l'échiquier avec le nouveau coup
-    ECHIQUIER.make_move(start, end)
+    # Vérifier si le mouvement est autorisé pour la pièce
+    if not piece_present.check_bouger_piece(start, end, piece_present):
+        print("Mouvement invalide pour la pièce sélectionnée.")
+        return False
 
-    # échiquier mis à jour
-    ECHIQUIER.print_echiquier_unicode()
+    # Vérifier si le chemin entre la case de départ et d'arrivée est dégagé
+    if not est_chemin_degagé(partie_en_cours, start, end):
+        print("Le chemin entre la case de départ et d'arrivée n'est pas dégagé.")
+        return False
 
-    return None
+    # Vérifier si le roi serait en échec après le mouvement
+    if est_roi_en_echec_apres_mouvement(partie_en_cours, start, end, couleur_attendue):
+        print("Le roi serait en échec après ce mouvement.")
+        return False
+
+    return True
+
 
 
 def nouvelle_partie():

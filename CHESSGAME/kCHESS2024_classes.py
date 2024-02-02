@@ -1,98 +1,11 @@
-# -*- coding : utf8 -*-
+# -*- coding: utf8 -*-
 """kCHESS2024_classes.py"""
 """Jeu d'Echecs v0.5"""
 
 class ECHIQUIER:
     def __init__(self):
-        self.partie_en_cours = []
-        # self.cases = [
-        #     f"{col}{row}" for row in range(1, 9) for col in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
-        # ]
-        self.cases = [
-            'a1', 'b1', 'c1', 'd1', 'e1', 'f1', 'g1', 'h1', 'a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2', 'a3', 'b3', 'c3', 'd3', 'e3', 'f3', 'g3', 'h3', 'a4', 'b4', 'c4', 'd4', 'e4', 'f4', 'g4', 'h4', 'a5', 'b5', 'c5', 'd5', 'e5', 'f5', 'g5', 'h5', 'a6', 'b6', 'c6', 'd6', 'e6', 'f6', 'g6', 'h6', 'a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7', 'a8', 'b8', 'c8', 'd8', 'e8', 'f8', 'g8', 'h8'
-        ]
-        
-        self.echiquier_unicode = [
-            ['♖', '♘', '♗', '♕', '♔', '♗', '♘', '♖'],
-            ['♙', '♙', '♙', '♙', '♙', '♙', '♙', '♙'],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            ['♟', '♟', '♟', '♟', '♟', '♟', '♟', '♟'],
-            ['♜', '♞', '♝', '♛', '♚', '♝', '♞', '♜']
-        ]
-        
-        self.echiquier_unicode_noirs = [
-            ['♜', '♞', '♝', '♛', '♚', '♝', '♞', '♜'],
-            ['♟', '♟', '♟', '♟', '♟', '♟', '♟', '♟'],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            ['♙', '♙', '♙', '♙', '♙', '♙', '♙', '♙'],
-            ['♖', '♘', '♗', '♕', '♔', '♗', '♘', '♖']
-        ]
-        
-        self.pieces_mapping = {
-            'P': Pion, 'p': Pion,
-            'T': Tour, 't': Tour,
-            'C': Cavalier, 'c': Cavalier,
-            'F': Fou, 'f': Fou,
-            'D': Reine, 'd': Reine,
-            'R': Roi, 'r': Roi,
-        }
-
-        self.pieces_dict = {
-            'P': '♙', 'N': '♘', 'B': '♗', 'R': '♖', 'Q': '♕', 'K': '♔',
-            'p': '♟', 'n': '♞', 'b': '♝', 'r': '♜', 'q': '♛', 'k': '♚'
-        }
-        
-        self.echiquier = [
-            ['t', 'c', 'f', 'd', 'r', 'f', 'c', 't'],
-            ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
-            ['T', 'C', 'F', 'D', 'R', 'F', 'C', 'T']
-        ]
-
-        # Nouvelle variable pour stocker l'échiquier Unicode actuel
-        self.echiquier_unicode_actuel = self.echiquier_unicode
-
-    def changer_orientation(self):
-        # Inverser l'échiquier Unicode actuel
-        self.echiquier = [ligne[::-1] for ligne in self.echiquier]
-        self.echiquier_unicode = [ligne[::-1] for ligne in self.echiquier_unicode]
-
-    def print_echiquier(self):
-        for row in self.echiquier:
-            print(' '.join(row))
-        print()
-
-    # def print_echiquier_unicode(self):
-    #     for ligne in range(8):
-    #         for colonne in range(8):
-    #             piece_unicode = self.echiquier_unicode[ligne][colonne]
-    #             print(f"{piece_unicode}", end='  ')
-    #         print()
-    
-    def print_echiquier_unicode(self, couleur='B'):
-        if couleur == 'N':
-            echiquier_unicode = self.echiquier_unicode_noirs
-        else:
-            echiquier_unicode = self.echiquier_unicode
-
-        for ligne in range(8):
-            for colonne in range(8):
-                piece_unicode = echiquier_unicode[ligne][colonne]
-                print(f"{piece_unicode}", end='  ')
-            print()
-class ECHIQUIER:
-    def __init__(self):
-        self.partie_en_cours = []
+        # self.partie_en_cours = []
+        self.partie_en_cours = ECHIQUIER()
         self.cases = [
             'a1', 'b1', 'c1', 'd1', 'e1', 'f1', 'g1', 'h1', 'a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2',
             'a3', 'b3', 'c3', 'd3', 'e3', 'f3', 'g3', 'h3', 'a4', 'b4', 'c4', 'd4', 'e4', 'f4', 'g4', 'h4',
@@ -175,7 +88,6 @@ class ECHIQUIER:
                 print(f"{piece_unicode}", end='  ')
             print()
 
-
     def print_echiquier_unicode_noirs(self, couleur='N'):
         if couleur == 'N':
             echiquier_unicode = self.echiquier_unicode_noirs
@@ -187,9 +99,6 @@ class ECHIQUIER:
                 piece_unicode = echiquier_unicode[ligne][colonne]
                 print(f"{piece_unicode}", end='  ')
             print()
-
-
-
 
     def make_move(self, start, end, inverse=False):
         ligne_start = 8 - int(start[1])
@@ -228,6 +137,8 @@ class ECHIQUIER:
         else:
             self.echiquier_unicode_actuel = self.echiquier_unicode
 
+# Reste du code à suivre...
+
 
 
 class Pieces:
@@ -243,29 +154,38 @@ class Pion(Pieces):
     def __init__(self, couleur):
         super().__init__(couleur)
 
-    def check_bouger_piece(self, start, end):
+    def check_bouger_piece(self, start, end, piece_present):
         # Converti les coordonnées de la case de départ et de la case d'arrivée
         ligne_start, colonne_start = 8 - int(start[1]), ord(start[0]) - ord('a')
         ligne_end, colonne_end = 8 - int(end[1]), ord(end[0]) - ord('a')
 
         # Implémente la logique de déplacement du Pion
-        if self.couleur == 'B':  # Pion blanc
+        if self.couleur == 'B':  # Pion noir
             # Si c'est le premier mouvement, le Pion peut avancer d'une ou deux cases
-            if ligne_start == 6 and ligne_start - ligne_end in (1, 2):
+            if ligne_start == 1 and ligne_end - ligne_start in (1, 2) and piece_present is None:
                 return True
             # Sinon, le Pion peut avancer d'une case
-            elif ligne_start - ligne_end == 1:
+            elif ligne_end - ligne_start == 1 and piece_present is None:
                 return True
-        elif self.couleur == 'N':  # Pion noir
+            # Le Pion peut capturer une pièce diagonalement
+            elif abs(colonne_start - colonne_end) == 1 and ligne_end - ligne_start == 1 and piece_present is not None:
+                return True
+        elif self.couleur == 'N':  # Pion blanc
             # Si c'est le premier mouvement, le Pion peut avancer d'une ou deux cases
-            if ligne_start == 1 and ligne_end - ligne_start in (1, 2):
+            if ligne_start == 6 and ligne_start - ligne_end in (1, 2) and piece_present is None:
                 return True
             # Sinon, le Pion peut avancer d'une case
-            elif ligne_end - ligne_start == 1:
+            elif ligne_start - ligne_end == 1 and piece_present is None:
+                return True
+            # Le Pion peut capturer une pièce diagonalement
+            elif abs(colonne_start - colonne_end) == 1 and ligne_start - ligne_end == 1 and piece_present is not None:
                 return True
 
         # Si aucune des conditions ci-dessus n'est remplie, le déplacement n'est pas autorisé
         return False
+
+
+
 
 
 class Tour(Pieces):
