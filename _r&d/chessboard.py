@@ -10,7 +10,8 @@ from kCHESS2024_classes import *
 
 # Initial setup
 ECHIQUIER = ECHIQUIER()
-# partie_en_cours = ECHIQUIER.partie_en_cours
+check_case = ECHIQUIER.check_case
+
 liste_coups = []
 
 
@@ -57,15 +58,6 @@ def format_partie_en_cours_pgn(partie_en_cours):
         moves_pgn.append(move)
     return ' '.join(moves_pgn)
 
-
-
-def validation_input(input_sequence, partie_en_cours, couleur_attendue):
-    # Séparer les coordonnées de départ et d'arrivée
-    start, end = input_sequence.split('-')
-
-    # Vérifier si les coordonnées sont valides
-    return True
-
 def choisir_couleur():
     while True:
         couleur = input("Choisissez la couleur (B pour blanc, N pour noir) : ").upper()
@@ -74,17 +66,40 @@ def choisir_couleur():
         else:
             print("Choix invalide. Veuillez choisir B pour blanc ou N pour noir.")
 
+def validation_input(input_sequence, couleur):
+    # Check if the input contains a dash
+    if '-' not in input_sequence:
+        print("Veuillez entrer un coup valide avec un tiret (-).")
+        return False
+
+    # Séparer les coordonnées de départ et d'arrivée
+    start, end = input_sequence.split('-')
+    
+    # Vérifier si les coordonnées de départ et d'arrivée sont valides
+    if not check_case(start) or not check_case(end):
+        print("Veuillez entrer des coordonnées correctes.")
+        return False
+
+    # Autres vérifications ou traitements si nécessaire
+    return True
+
+
 
 def nouvelle_partie():
-    couleur_attendue = choisir_couleur()
-
-    
-
+    couleur_choisie = choisir_couleur()
     while True:
-        clear_console()
-        ECHIQUIER.afficher_echiquier()
+        # clear_console()
+        if couleur_choisie == 'N':
+            ECHIQUIER.afficher_echiquier(flip=True)
+        else:
+            ECHIQUIER.afficher_echiquier()
 
-        input_sequence = input(f"Entrez coup pour les {couleur_attendue} (ex. a2-a4). 'q' sauvegarder/quitter, 'qq' quitter : ")
+        input_sequence = input(f"Entrez coup pour les {couleur_choisie} (ex. a2-a4). 'q' sauvegarder/quitter, 'qq' quitter : ")
+        
+        # Validate the input and proceed accordingly
+        if validation_input(input_sequence, couleur_choisie):
+            # Autres actions à effectuer si les coordonnées sont valides
+            print("Coordonnées valides. Traitement à effectuer.")
 
         if input_sequence.lower() == 'qq':
             print("Au revoir !")
@@ -104,6 +119,7 @@ def nouvelle_partie():
 
     # Message de sortie après la boucle principale
     print("Partie terminée. Merci d'avoir joué !")
+
 
 
     
