@@ -3,6 +3,7 @@
 
 # import os,sys,keyboard,time,subprocess
 import os
+import time
 from datetime import datetime
 
 # from kCHESS2024_classes import ECHIQUIER, Coup, Pion, Tour, Cavalier, Fou, Reine, Roi
@@ -25,10 +26,12 @@ repertoire_parent = os.path.dirname(chemin_script)
 # chemin complet pour le dossier "parties"
 chemin_parties = os.path.join(repertoire_parent, 'parties')
 
+
+
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
-    # une pause pour permettre à la console de se rafraîchir
-    # time.sleep(0.5)  
+    # Ajoutez une pause pour laisser le temps de voir les messages d'erreur
+    # time.sleep(0.5)
 
 # def clear_console():
 #     # subprocess.run(['clear'])  # Pour Linux/Mac
@@ -77,7 +80,7 @@ def validation_input(input_sequence, couleur):
     
     # Vérifier si les coordonnées de départ et d'arrivée sont valides
     if not check_case(start) or not check_case(end):
-        print("Veuillez entrer des coordonnées correctes.")
+        # print("Veuillez entrer des coordonnées correctes.")
         return False
 
     # Autres vérifications ou traitements si nécessaire
@@ -87,24 +90,22 @@ def validation_input(input_sequence, couleur):
 
 def nouvelle_partie():
     couleur_choisie = choisir_couleur()
+    if couleur_choisie == 'N':
+        ECHIQUIER.afficher_echiquier(flip=True)
+    else:
+        ECHIQUIER.afficher_echiquier()
     while True:
-        # clear_console()
+        input_sequence = input(f"Entrez coup pour les {couleur_choisie} (ex. a2-a4). 'q' sauvegarder/quitter, 'qq' quitter : ")
+        clear_console()
         if couleur_choisie == 'N':
             ECHIQUIER.afficher_echiquier(flip=True)
         else:
             ECHIQUIER.afficher_echiquier()
 
-        input_sequence = input(f"Entrez coup pour les {couleur_choisie} (ex. a2-a4). 'q' sauvegarder/quitter, 'qq' quitter : ")
-        
-        # Validate the input and proceed accordingly
-        if validation_input(input_sequence, couleur_choisie):
-            # Autres actions à effectuer si les coordonnées sont valides
-            print("Coordonnées valides. Traitement à effectuer.")
-
         if input_sequence.lower() == 'qq':
             print("Au revoir !")
             break
-                
+
         if input_sequence.lower() == 'q':
             if liste_coups:
                 sauvegarde_demandee = demander_sauvegarde()
@@ -117,8 +118,12 @@ def nouvelle_partie():
             print("Au revoir !")
             break
 
-    # Message de sortie après la boucle principale
-    print("Partie terminée. Merci d'avoir joué !")
+        # Validation du coup
+        if not validation_input(input_sequence, couleur_choisie):
+            continue
+
+        # Autres traitements ou mises à jour nécessaires ici
+
 
 
 
